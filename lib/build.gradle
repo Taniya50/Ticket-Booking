@@ -1,0 +1,35 @@
+plugins {
+    id 'groovy'
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation libs.groovy.all
+    implementation libs.guava
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.6'
+
+        implementation 'org.mindrot:jbcrypt:0.4'
+
+
+
+    testImplementation libs.spock.core
+    testImplementation libs.junit
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    api libs.commons.math3
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
